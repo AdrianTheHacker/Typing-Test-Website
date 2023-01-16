@@ -21,7 +21,7 @@ body {
     overflow: hidden;
 }
 
-.mountains {
+#mountains {
     position: absolute;
     right:0px;
     top:-5px;
@@ -31,7 +31,7 @@ body {
     min-height: 500px
 }
 
-.content {
+#content {
     background-color: var(--background-colour);
 
     position: absolute;
@@ -46,11 +46,11 @@ body {
     min-height: 500px;
 }
 
-.water-mark-text {
+#water-mark-text {
     color: var(--water-mark-colour);
     font-size: var(--water-mark-font-size);
 }
-.water-mark-div {
+#water-mark-div {
     position: static;
     top: 5px;
     left: 5px;
@@ -59,23 +59,26 @@ body {
     height: fit-content;
 }
 
-.typing-text {
+#typing-text {
     color: var(--typing-text-colour);
     font-size: var(--typing-text-font-size);
 
     line-height:30px;
 }
-.score-tracker-text {
+#score-tracker-text {
     color: var(--score-tracker-text-colour);
     font-size: var(--score-tracker-text-font-size);
 }
-.main-content-div {
+#main-content-div {
     position: static;
     margin: auto;
 
     width: 66%;
     max-width: 700px;
     min-width: 400px;
+
+    border-style: solid;
+  border-width: 5px;
 }
 
 
