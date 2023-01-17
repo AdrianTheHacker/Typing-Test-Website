@@ -27,7 +27,28 @@ function fixList(words) {
 
     return text;
 }
+let words = document.getElementById("typing-text");
+let text = fixList(words.innerHTML);
+let textLog = 0;
 
-let words = document.getElementById("typing-text").innerHTML;
-let text = fixList(words);
-console.log(text);
+String.prototype.replaceAt = function (index, char) {
+    let a = this.split("");
+    a[index] = char;
+    return a.join("");
+}
+
+window.addEventListener("keydown", function (event) {
+    if (event.defaultPrevented) {
+      return; // Do nothing if the event was already processed
+    }
+
+    if(event.key == text[textLog]) {
+        let lastArrow = words.innerHTML.lastIndexOf(">");
+        let index = words.innerHTML.indexOf(event.key, lastArrow);
+
+        newWords = words.innerHTML.replaceAt(index, `<span style="color: #a4ffbb;">${event.key}</span>`);
+        words.innerHTML = newWords;
+
+        textLog += 1;
+    }
+});

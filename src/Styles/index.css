@@ -65,6 +65,12 @@ body {
 
     line-height:30px;
 }
+#typed-text {
+    color: var(--typed-text-colour);
+    font-size: var(--typing-text-font-size);
+
+    line-height: 30px;
+}
 #score-tracker-text {
     color: var(--score-tracker-text-colour);
     font-size: var(--score-tracker-text-font-size);
