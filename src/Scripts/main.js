@@ -28,8 +28,10 @@ function fixList(words) {
     return text;
 }
 let words = document.getElementById("typing-text");
+let wordCountText = document.getElementById("word-count");
 let text = fixList(words.innerHTML);
 let textLog = 0;
+let wordCount = 0;
 
 String.prototype.replaceAt = function (index, char) {
     let a = this.split("");
@@ -38,17 +40,17 @@ String.prototype.replaceAt = function (index, char) {
 }
 
 window.addEventListener("keydown", function (event) {
-    if (event.defaultPrevented) {
-      return; // Do nothing if the event was already processed
-    }
+    if (event.defaultPrevented) {return;}
+    if(event.key != text[textLog]) {return;}
 
-    if(event.key == text[textLog]) {
-        let lastArrow = words.innerHTML.lastIndexOf(">");
-        let index = words.innerHTML.indexOf(event.key, lastArrow);
+    const lastArrow = words.innerHTML.lastIndexOf(">");
+    const index = words.innerHTML.indexOf(event.key, lastArrow);
 
-        newWords = words.innerHTML.replaceAt(index, `<span style="color: #a4ffbb;">${event.key}</span>`);
-        words.innerHTML = newWords;
+    newWords = words.innerHTML.replaceAt(index, `<span style="color: #a4ffbb;">${event.key}</span>`);
+    words.innerHTML = newWords;
+    textLog += 1;
 
-        textLog += 1;
-    }
+    if(event.key != " ") {return;}
+    wordCount += 1;
+    wordCountText.innerHTML = wordCount;
 });
