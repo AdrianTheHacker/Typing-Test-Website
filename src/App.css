@@ -1,0 +1,11 @@
+:root {
+  --aqua-green:#5cdb95;
+  --navy-blue:#05386b;
+  --off-white-green:#edf5e1;
+  --light-green:#a4ffbb;
+}
+
+body {
+  background-color: var(--aqua-green);
+}
+
