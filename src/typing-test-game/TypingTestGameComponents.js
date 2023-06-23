@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import './TypingTestGameComponents.css';
 
 function TimeRemainingDisplay({ timeRemaining }) {
@@ -28,8 +29,8 @@ const wordsList = "React can be used to develop single-page, mobile, or server-r
 function createWordsListToListOfSpans(wordsList) {
     let wordsListAsSpan = [];
     
-    [...wordsList].forEach((letter) => {
-        wordsListAsSpan.push(<span className='typing-letter'>{letter}</span>);
+    [...wordsList].forEach((letter, index) => {
+        wordsListAsSpan.push(<span className='typing-letter' id={index}>{letter}</span>);
     });
 
     return wordsListAsSpan;
@@ -37,6 +38,25 @@ function createWordsListToListOfSpans(wordsList) {
 
 export function TypingTestBase() {
     const wordsListAsSpan = createWordsListToListOfSpans(wordsList);
+    const [ letterIndex ] = useState(0);
+    
+    useEffect(() => {
+        const keyDownHandler = event => {
+            event.preventDefault();
+
+            console.log(letterIndex);
+
+            if(wordsList.charAt(letterIndex) === event.key) {
+                console.log('Matching Letter!');
+            }
+        };
+    
+        document.addEventListener('keydown', keyDownHandler);
+    
+        return () => {
+          document.removeEventListener('keydown', keyDownHandler);
+        };
+      }, []);
 
     return(
         <div className='typing-test-base'>
