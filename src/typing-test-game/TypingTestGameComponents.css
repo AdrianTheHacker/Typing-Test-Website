@@ -19,12 +19,20 @@
     color: var(--navy-blue);
 }
 
-.typing-letter {
+.typing-words {
     font-size: 30px;
     font-family: fantasy;
 
     color: var(--off-white-green);
 }
+
+.typed-words {
+    font-size: 30px;
+    font-family: fantasy;
+
+    color: var(--light-green);
+}
+
 
 .typing-test-base {
     width: 50%;

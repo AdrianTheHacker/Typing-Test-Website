@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './TypingTestGameComponents.css';
 
 function TimeRemainingDisplay({ timeRemaining }) {
@@ -17,51 +17,30 @@ function WordsTypedDisplay({ wordsTyped }) {
     );
 }
 
-function WordsToType({ lettersAsSpansList }) {
+function WordsToType({ typingWords, typedWords }) {
     return(
         <div className='words-to-type-container'>
-            {lettersAsSpansList}
+            {typedWords}
+            {typingWords}
         </div>
     )
 }
 
-const wordsList = "React can be used to develop single-page, mobile, or server-rendered applications with frameworks like Next.js. Because React is only concerned with the user interface and rendering components to the DOM, React applications often rely on libraries for routing and other client-side functionality.";
-function createWordsListToListOfSpans(wordsList) {
-    let wordsListAsSpan = [];
-    
-    [...wordsList].forEach((letter, index) => {
-        wordsListAsSpan.push(<span className='typing-letter' id={index}>{letter}</span>);
-    });
+let words = "React can be used to develop single-page, mobile, or server-rendered applications with frameworks like Next.js. Because React is only concerned with the user interface and rendering components to the DOM, React applications often rely on libraries for routing and other client-side functionality.";
 
-    return wordsListAsSpan;
+const typingWordsAsSpan = (words) => {
+    return <span className='typing-words'>{words}</span>
 }
 
 export function TypingTestBase() {
-    const wordsListAsSpan = createWordsListToListOfSpans(wordsList);
-    const [ letterIndex ] = useState(0);
-    
-    useEffect(() => {
-        const keyDownHandler = event => {
-            event.preventDefault();
-
-            console.log(letterIndex);
-
-            if(wordsList.charAt(letterIndex) === event.key) {
-                console.log('Matching Letter!');
-            }
-        };
-    
-        document.addEventListener('keydown', keyDownHandler);
-    
-        return () => {
-          document.removeEventListener('keydown', keyDownHandler);
-        };
-      }, []);
+    const [ letterIndex, setLetterIndex ] = useState(0);
+    const [ typingWords, setTypingWords ] = useState(typingWordsAsSpan(words));
+    const [ typedWords, setTypedWords ] = useState('');
 
     return(
         <div className='typing-test-base'>
-            <WordsToType lettersAsSpansList={wordsListAsSpan}/>
-            <WordsTypedDisplay wordsTyped={0} />
+            <WordsToType typingWords={typingWords} typedWords={typedWords}/>
+            <WordsTypedDisplay wordsTyped={0}/>
             <TimeRemainingDisplay timeRemaining={30}/>
         </div>
     )
