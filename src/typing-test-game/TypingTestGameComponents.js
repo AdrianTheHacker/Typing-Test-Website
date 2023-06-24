@@ -30,24 +30,27 @@ function WordsToType({ typingWords, typedWords }) {
 let words = "React can be used to develop single-page, mobile, or server-rendered applications with frameworks like Next.js. Because React is only concerned with the user interface and rendering components to the DOM, React applications often rely on libraries for routing and other client-side functionality.";
 
 export function TypingTestBase() {
+    const [ wordsTyped, setWordsTyped ] = useState(0);
     const [ typedWords, setTypedWords ] = useState('');
     const [ typingWords, setTypingWords ] = useState(words);
 
     useKeyPress(key => {
         console.log(key);
 
-        if(key === typingWords.charAt(0)) {
-            console.log("Matching Letters!");
+        if(key !== typingWords.charAt(0)) { return; }
+        if(key === ' ') { setWordsTyped(wordsTyped + 1); }
+        if(typingWords.length === 1) { setWordsTyped(wordsTyped + 1); }
 
-            setTypedWords(typedWords.concat(typingWords.charAt(0)));
-            setTypingWords(typingWords.slice(1));
-        }
+        console.log("Matching Letters!");
+
+        setTypedWords(typedWords.concat(typingWords.charAt(0)));
+        setTypingWords(typingWords.slice(1));
     }); 
 
     return(
         <div className='typing-test-base'>
             <WordsToType typingWords={typingWords} typedWords={typedWords}/>
-            <WordsTypedDisplay wordsTyped={0}/>
+            <WordsTypedDisplay wordsTyped={wordsTyped}/>
             <TimeRemainingDisplay timeRemaining={30}/>
         </div>
     )
