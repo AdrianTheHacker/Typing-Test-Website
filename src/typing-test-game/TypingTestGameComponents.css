@@ -3,6 +3,7 @@
     --navy-blue:#05386b;
     --off-white-green:#edf5e1;
     --light-green:#a4ffbb;
+    --minimal-red:#F47174;
 }
 
 .app-logo-text {
@@ -19,20 +20,26 @@
     color: var(--navy-blue);
 }
 
-.typing-words {
+.not-typed-characters {
     font-size: 30px;
     font-family: fantasy;
 
     color: var(--off-white-green);
 }
 
-.typed-words {
+.correct-characters {
     font-size: 30px;
     font-family: fantasy;
 
     color: var(--light-green);
 }
 
+.wrong-characters {
+    font-size: 30px;
+    font-family: fantasy;
+
+    color: var(--minimal-red);
+}
 
 .typing-test-base {
     width: 50%;
