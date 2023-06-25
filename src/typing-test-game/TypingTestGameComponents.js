@@ -42,19 +42,30 @@ export function TypingTestBase() {
 
     useKeyPress(key => {
 
-        
+        if(key === 'Backspace') {
+            const newNotTypedCharacters = wrongCharacters.charAt(wrongCharacters.length - 1).concat(notTypedCharacters);
+            const newWrongCharacters = wrongCharacters.slice(0, wrongCharacters.length - 1);
+
+            setNotTypedCharacters(newNotTypedCharacters);
+            setWrongCharacters(newWrongCharacters);
+        }
         
         if(!allowedCharacters.includes(key)) { return; }
 
         if(key !== notTypedCharacters.charAt(0)) { 
             setWrongCharacters(wrongCharacters.concat(notTypedCharacters.charAt(0)));
             setNotTypedCharacters(notTypedCharacters.slice(1));
-            setWrongLetterTyped(true);
             return; 
         }
 
         if(key === ' ') { setWordsTyped(numberOfWordsTyped + 1); }
         if(notTypedCharacters.length === 1) { setWordsTyped(numberOfWordsTyped + 1); }
+
+        if(wrongCharacters !== '') {
+            setWrongCharacters(wrongCharacters.concat(notTypedCharacters.charAt(0)));
+            setNotTypedCharacters(notTypedCharacters.slice(1));
+            return;
+        }
 
         setCorrectCharacters(correctCharacters.concat(notTypedCharacters.charAt(0)));
         setNotTypedCharacters(notTypedCharacters.slice(1));
