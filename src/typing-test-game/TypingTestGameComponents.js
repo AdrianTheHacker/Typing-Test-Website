@@ -7,7 +7,7 @@ function EndScreenPopup({ closeFunction, wordsTyped, timeInSeconds }) {
     const wordsPerMinute = (wordsTyped * (timeInSeconds / 60)).toFixed(2);
     const wordsPerMinuteText = 'Words Per Minute: '.concat(wordsPerMinute);
 
-    return(
+    return (
         <div className='popup-box'>
             <p className='test-info-box'>{wordsPerMinuteText}</p>
             <button onClick={closeFunction} className='play-again-button'>Play Again</button>
@@ -41,15 +41,29 @@ function WordsToType({ notTypedCharacters, correctCharacters, wrongCharacters })
     )
 }
 
-const words = "React can be used to develop single-page, mobile, or server-rendered applications with frameworks like Next.js. Because React is only concerned with the user interface and rendering components to the DOM, React applications often rely on libraries for routing and other client-side functionality.";
 const singleQuotationMark = "'";
 const allowedCharacters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890`~!@#$%^&*()-_=+[{]}\;|:"<,>.?/ '.concat(singleQuotationMark);
 
+function getWordsSample(words) {   
+    const wordsAsArr = words.split(' ');
+    let wordsSample = '';
+
+    for(let i = 0; i < 19; i ++) {
+        const index = Math.floor(Math.random() * wordsAsArr.length - 1);
+        wordsSample = wordsSample.concat(wordsAsArr[index] + ' ');
+    }
+    wordsSample = wordsSample.concat(wordsAsArr[19] + '.');
+
+    return wordsSample;
+}
+
+const words = 'a about all also and as at be because but by can come could day do even find first for from get give go have he her here him his how I if in into it its just know like look make man many me more my new no not now of on one only or other our out people say see she so some take tell than that the their them then there these they thing think this those time to two up use very want way we well what when which who will with would year you your';
+
 export function TypingTestBase() {
-    const amountOfTime = 10;
+    const amountOfTime = 15;
 
     const [numberOfWordsTyped, setWordsTyped] = useState(0);
-    const [notTypedCharacters, setNotTypedCharacters] = useState(words);
+    const [notTypedCharacters, setNotTypedCharacters] = useState(getWordsSample(words));
     const [correctCharacters, setCorrectCharacters] = useState('');
     const [wrongCharacters, setWrongCharacters] = useState('');
     const [timeRemaining, setTimeRemaining] = useState(amountOfTime);
@@ -61,15 +75,11 @@ export function TypingTestBase() {
 
     useEffect(() => {
         setTimeout(() => {
-            if(isOpen) {
-                setTimeRemaining(amountOfTime);
-                setNotTypedCharacters(words);
-                setCorrectCharacters('');
-                setWrongCharacters('');
+            if (isOpen) {
                 return;
             }
 
-            if(timeRemaining === 0) {
+            if (timeRemaining === 0) {
                 open();
                 return;
             }
@@ -112,13 +122,23 @@ export function TypingTestBase() {
         setNotTypedCharacters(notTypedCharacters.slice(1));
     });
 
+    function restartGame() {
+        const newWords = getWordsSample(words);
+
+        setTimeRemaining(amountOfTime);
+        setNotTypedCharacters(newWords);
+        setCorrectCharacters('');
+        setWrongCharacters('');
+        return close();
+    }
+
     return (
         <div className='typing-test-base'>
             <WordsToType notTypedCharacters={notTypedCharacters} correctCharacters={correctCharacters} wrongCharacters={wrongCharacters} />
             <WordsTypedDisplay wordsTyped={numberOfWordsTyped} />
             <TimeRemainingDisplay timeRemaining={timeRemaining} />
             <Modal>
-                <EndScreenPopup closeFunction={close} wordsTyped={numberOfWordsTyped} timeInSeconds={amountOfTime}/>
+                <EndScreenPopup closeFunction={restartGame} wordsTyped={numberOfWordsTyped} timeInSeconds={amountOfTime} />
             </Modal>
         </div>
     )
