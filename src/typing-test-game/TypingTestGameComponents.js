@@ -54,7 +54,7 @@ const allowedCharacters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1
 
 function getWordsSample(words) {   
     const wordsAsArr = words.split(' ');
-    const wordsSampleLength = 30;
+    const wordsSampleLength = 60;
     let wordsSample = '';
 
     for(let i = 0; i < wordsSampleLength - 1; i ++) {
