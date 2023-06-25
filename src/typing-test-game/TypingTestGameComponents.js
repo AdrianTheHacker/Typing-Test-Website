@@ -141,6 +141,7 @@ export function TypingTestBase() {
     function startGame() {
         const newWords = getWordsSample(words);
 
+        setWordsTyped(0);
         setTimeRemaining(amountOfTime);
         setNotTypedCharacters(newWords);
         setCorrectCharacters('');
@@ -151,6 +152,7 @@ export function TypingTestBase() {
     function restartGame() {
         const newWords = getWordsSample(words);
 
+        setWordsTyped(0);
         setTimeRemaining(amountOfTime);
         setNotTypedCharacters(newWords);
         setCorrectCharacters('');
