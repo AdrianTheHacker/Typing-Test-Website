@@ -1,37 +1,45 @@
 :root {
-    --aqua-green:#5cdb95;
-    --navy-blue:#05386b;
-    --off-white-green:#edf5e1;
-    --light-green:#a4ffbb;
-    --minimal-red:#F47174;
+    --aqua-green: #5cdb95;
+    --navy-blue: #05386b;
+    --off-white-green: #edf5e1;
+    --light-green: #a4ffbb;
+    --minimal-red: #F47174;
+
+    --text: #eaf3fa;
+    --background: #091b2a;
+    --primary: #8286e3;
+    --secondary: #07030d;
+    --accent: #772ed1;
 }
 
 .app-logo-text {
     font-size: 30px;
     font-family: fantasy;
 
-    color: var(--navy-blue);
+    background: linear-gradient(120deg, var(--primary), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .test-info-box {
     font-size: 30px;
     font-family: fantasy;
 
-    color: var(--navy-blue);
+    color: var(--text);
 }
 
 .not-typed-characters {
     font-size: 30px;
     font-family: fantasy;
 
-    color: var(--off-white-green);
+    color: var(--text);
 }
 
 .correct-characters {
     font-size: 30px;
     font-family: fantasy;
 
-    color: var(--light-green);
+    color: var(--accent);
 }
 
 .wrong-characters {
@@ -45,10 +53,11 @@
     width: 50%;
 
     margin: auto;
-} 
+}
 
 .popup-box {
-    background-color: var(--aqua-green);
+    background-color: #0f2034;
+    color: #eaf3fa;
 
     text-align: center;
     padding-left: 20px;
@@ -62,11 +71,12 @@
 }
 
 .play-again-button {
-    background-color: var(--aqua-green);
+    background-color: var(--primary);
     border: none;
+    border-radius: 5px;
 
     font-size: 20px;
     font-family: fantasy;
 
-    color: var(--navy-blue);
+    color: var(--secondary);
 }
