@@ -1,11 +1,16 @@
 :root {
-  --aqua-green:#5cdb95;
-  --navy-blue:#05386b;
-  --off-white-green:#edf5e1;
-  --light-green:#a4ffbb;
+  --aqua-green: #5cdb95;
+  --navy-blue: #05386b;
+  --off-white-green: #edf5e1;
+  --light-green: #a4ffbb;
+
+  --text: #eaf3fa;
+  --background: #091b2a;
+  --primary: #8286e3;
+  --secondary: #07030d;
+  --accent: #772ed1;
 }
 
 body {
-  background-color: var(--aqua-green);
+  background-color: var(--background);
 }
-
